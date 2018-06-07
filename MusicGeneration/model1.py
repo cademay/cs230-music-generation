@@ -35,7 +35,7 @@ def initialize_rnn(X, n_a, n_values):
 
 
 def train_rnn(trainFlag):
-        X, Y, pitchnames = generate_dataset_scheme_4('beethoven', 1)
+        X, Y, pitchnames = generate_dataset_scheme_4('beethoven', 3)
         print(X.shape, Y.shape)
         n_values = Y.shape[1]
         model = initialize_rnn(X, n_a, n_values)
