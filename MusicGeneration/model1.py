@@ -35,7 +35,7 @@ def initialize_rnn(X, n_a, n_values):
 
 
 def train_rnn(trainFlag):
-        X, Y, pitchnames = generate_dataset_scheme_4('beethoven', 3)
+        X, Y, pitchnames = generate_dataset_scheme_4('dev_small', 3)
         print(X.shape, Y.shape)
         n_values = Y.shape[1]
         model = initialize_rnn(X, n_a, n_values)
@@ -75,12 +75,13 @@ def generate_music(model, X, pitchnames, n_values):
 
 def main():
         model, X, pitchnames, n_values, history = train_rnn(True)
+        """
         for ii in range(10):
                 results = generate_music(model, X, pitchnames, n_values)
                 print ("creating midi file no. ", ii)
                 create_midi_from_results(results, 'music_outputs/model1/fuego_flames{0}.mid'.format(ii))
                 print ('midi created')
-
+        """
 
 main()
 

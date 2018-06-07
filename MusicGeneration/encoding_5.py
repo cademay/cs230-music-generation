@@ -9,7 +9,7 @@ DATA_DIR = 'dev'
 DEV2_DIR = 'Dev2'
 #TEST_DIR = 'test'
 
-TEST_DIR = 'beethoven'
+TEST_DIR = 'dev_small'
 
 
 CACHE_DIR = 'cache'
