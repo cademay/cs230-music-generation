@@ -34,7 +34,7 @@ def initialize_rnn(X, n_a, n_values):
 
 
 def train_rnn(trainFlag):
-	X, Y, pitchnames = generate_dataset_scheme_4('dev_small', 3)
+	X, Y, pitchnames = generate_dataset_scheme_4('dev_small', 1)
 	print(X.shape, Y.shape)
 	n_values = Y.shape[1]
 	model = initialize_rnn(X, n_a, n_values)
@@ -42,7 +42,7 @@ def train_rnn(trainFlag):
 	#filepath = "weights_aws-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 	if trainFlag:
 		#checkpoint = ModelCheckpoint(filepath, monitor = 'loss', verbose = 0, save_best_only = True, mode = 'min')
-
+                print('creating model')
                 filepath="models/baseline/baseline_{epoch:02d}.hdf5"
                 callBack = ModelCheckpoint(filepath, monitor='loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=10)
                 callbackList = [callBack]
@@ -76,12 +76,10 @@ def generate_music(model, X, pitchnames, n_values):
  
 def main():
 	model, X, pitchnames, n_values, history = train_rnn(True)
-        """
-	for ii in range(10): 
+	for ii in range(0): 
 		results = generate_music(model, X, pitchnames, n_values)
 		print ("creating midi file no. ", ii)
 		create_midi_from_results(results, 'music_outputs/baseline/fuego_flames{0}.mid'.format(ii))
 		print ('midi created')
-        """
         
 main()

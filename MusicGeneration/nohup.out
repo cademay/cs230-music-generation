@@ -1,0 +1,8 @@
+  File "stacked_lstm_4.py", line 79
+    """
+      ^
+TabError: inconsistent use of tabs and spaces in indentation
+  File "stacked_lstm_4.py", line 79
+    """
+      ^
+TabError: inconsistent use of tabs and spaces in indentation

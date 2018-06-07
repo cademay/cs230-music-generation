@@ -32,12 +32,12 @@ def generate_dataset_scheme_4(dir, m =8):
 			print("generating midi from ", filename)
 			midi = converter.parse('{}/{}'.format(directory, filename))
 			notes_vec = None
-			parts = instrument.partitionByInstrument(midi)
+			#parts = instrument.partitionByInstrument(midi)
 
-			if parts: #file has instrument parts 
-				notes_vec = parts.parts[0].recurse()
-			else: 
-				notes_vec = midi.flat.notes
+			#if parts: #file has instrument parts 
+			#	notes_vec = parts.parts[0].recurse()
+			#else: 
+			notes_vec = midi.flat.notes
 			#print(notes_vec)
 			for mus_obj in notes_vec: 
 				if isinstance(mus_obj, note.Note): 
