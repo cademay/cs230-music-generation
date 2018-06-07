@@ -42,8 +42,16 @@ def train_rnn(trainFlag):
 	#filepath = "weights_aws-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 	if trainFlag:
 		#checkpoint = ModelCheckpoint(filepath, monitor = 'loss', verbose = 0, save_best_only = True, mode = 'min')
-		history = model.fit(X, Y, validation_split =.05, epochs = 1, batch_size = 100)
-		model.save('stacked_256.h5')
+
+                filepath="models/baseline/baseline_{epoch:02d}.hdf5"
+                callBack = ModelCheckpoint(filepath, monitor='loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=10)
+                callbackList = [callBack]
+
+                history = model.fit(X, Y, validation_split =.05, epochs = 110, batch_size = 100, callbacks=callbackList)
+
+
+
+
 	return model, X, pitchnames, n_values, history
 
 def generate_music(model, X, pitchnames, n_values):
@@ -71,7 +79,7 @@ def main():
 	for ii in range(10): 
 		results = generate_music(model, X, pitchnames, n_values)
 		print ("creating midi file no. ", ii)
-		create_midi_from_results(results, 'fuego_flames{0}.mid'.format(ii))
+		create_midi_from_results(results, 'music_outputs/baseline/fuego_flames{0}.mid'.format(ii))
 		print ('midi created')
         
         

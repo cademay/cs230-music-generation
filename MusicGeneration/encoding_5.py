@@ -7,7 +7,11 @@ import os
 
 DATA_DIR = 'dev'
 DEV2_DIR = 'Dev2'
-TEST_DIR = 'test'
+#TEST_DIR = 'test'
+
+TEST_DIR = 'beethoven'
+
+
 CACHE_DIR = 'cache'
 notes = [] 
 sequence_length = 100
