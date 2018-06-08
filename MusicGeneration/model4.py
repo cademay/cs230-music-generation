@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow.contrib import rnn
 import numpy as np
 from keras.models import load_model, Model, Sequential
-from keras.layers import Dense, Activation, Flatten, Dropout, Input, LSTM, BatchNormalization, Conv1D
+from keras.layers import Dense, Activation, Flatten, Dropout, Input, LSTM, BatchNormalization, Conv1D, SeparableConv1D
 from keras.initializers import glorot_uniform
 from keras.utils import to_categorical
 from keras.optimizers import Adam, RMSprop
@@ -17,8 +17,8 @@ n_a = 256
 
 def initialize_rnn(X, n_a, n_values):
         model = Sequential()
-        
-        model.add(Conv1D(128, 3, strides=1, input_shape=(X.shape[1], X.shape[2]), activation = 'relu'))
+
+        model.add(SeparableConv1D(128, 3, strides=1, input_shape=(X.shape[1], X.shape[2]), activation = 'relu'))
 
         #model.add(LSTM(n_a, input_shape=(X.shape[1], X.shape[2]), return_sequences = True))
         model.add(Dropout(0.1))
@@ -44,8 +44,8 @@ def train_rnn(trainFlag):
         if trainFlag:
                 #checkpoint = ModelCheckpoint(filepath, monitor = 'loss', verbose = 0, save_best_only = True, mode = 'min')
 
-                filepath="models/model1/model1_{epoch:02d}.hdf5"
-                callBack = ModelCheckpoint(filepath, monitor='loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=10)
+                filepath="models/model4/model4_{epoch:02d}.hdf5"
+                callBack = ModelCheckpoint(filepath, monitor='loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=20)
                 callbackList = [callBack]
                 history = model.fit(X, Y, validation_split =.05, epochs = 110, batch_size = 100, callbacks=callbackList)
 
@@ -78,8 +78,7 @@ def main():
         for ii in range(0):
                 results = generate_music(model, X, pitchnames, n_values)
                 print ("creating midi file no. ", ii)
-                create_midi_from_results(results, 'music_outputs/model1/fuego_flames{0}.mid'.format(ii))
+                create_midi_from_results(results, 'music_outputs/model4/m4_fuego_flames{0}.mid'.format(ii))
                 print ('midi created')
 
 main()
-
