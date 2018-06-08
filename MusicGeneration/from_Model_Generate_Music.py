@@ -24,7 +24,7 @@ def generate_music(model, X, pitchnames, n_values):
 
         return pred_out
 
-model_load = load_model("models/model1_100.hdf5")
+model_load = load_model("models/model1_80.hdf5")
 model_load_weights = model_load.get_weights()
 
 
@@ -32,7 +32,7 @@ model_load_weights = model_load.get_weights()
 for ii in range(2):
 	    results = generate_music(model_load, X, pitchnames, n_values)
 	    print ("creating midi file no. ", ii)
-	    create_midi_from_results(results, 'music_outputs/model1/model1_output{0}.mid'.format(ii))
+	    create_midi_from_results(results, 'music_outputs/model1/model1_output_80_epoch{0}.mid'.format(ii))
 	    print ('midi created')
 
 
