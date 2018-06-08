@@ -7,9 +7,9 @@ import os
 
 DATA_DIR = 'dev'
 DEV2_DIR = 'Dev2'
-#TEST_DIR = 'test'
+TRAIN_DIR = 'train'
 
-TEST_DIR = 'dev_small'
+TEST_DIR = 'train'
 
 
 CACHE_DIR = 'cache'
@@ -23,6 +23,8 @@ def generate_dataset_scheme_4(dir, m =8):
 		directory = DATA_DIR
 	if dir == 'Dev2': 
 		directory = DEV2_DIR
+	#if dir == 'train':
+     #   directory = TRAIN_DIR
 	else: 
 		directory = TEST_DIR
 	notes = []
@@ -81,7 +83,7 @@ def generate_dataset_scheme_4(dir, m =8):
 	Y = np_utils.to_categorical(Y)
 	#X = X/float(Y.shape[1]) - (Y.shape[1])/2
 	X = X/float(Y.shape[1])
-	print (notes)
+	#print (notes)
 	return X, Y, pitchnames
 
 def create_midi_from_results(prediction_output, fp = 'test.mid'):
@@ -109,7 +111,8 @@ def create_midi_from_results(prediction_output, fp = 'test.mid'):
 	     
 	    # pattern is a note
 	    else:
-
+            
+            
 	        curr_note = note.Note(pattern)
 	        curr_note.offset = offset
 	        curr_note.storedInstrument = instrument.Piano()

@@ -3,7 +3,7 @@ import numpy as np
 from encoding_5 import generate_dataset_scheme_4, sequence_length, create_midi_from_results
 
 
-X,Y,pitchnames = generate_dataset_scheme_4('dev_small', 1)
+X,Y,pitchnames = generate_dataset_scheme_4('train', 7)
 n_values = Y.shape[1]
 
 def generate_music(model, X, pitchnames, n_values):
@@ -24,7 +24,7 @@ def generate_music(model, X, pitchnames, n_values):
 
         return pred_out
 
-model_load = load_model("models/model1_80.hdf5")
+model_load = load_model("models/model1_320.hdf5")
 model_load_weights = model_load.get_weights()
 
 
@@ -32,7 +32,7 @@ model_load_weights = model_load.get_weights()
 for ii in range(2):
 	    results = generate_music(model_load, X, pitchnames, n_values)
 	    print ("creating midi file no. ", ii)
-	    create_midi_from_results(results, 'music_outputs/model1/model1_output_80_epoch{0}.mid'.format(ii))
+	    create_midi_from_results(results, 'music_outputs/model1/model1_output_320_epoch{0}.mid'.format(ii))
 	    print ('midi created')
 
 
