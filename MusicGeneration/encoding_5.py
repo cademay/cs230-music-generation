@@ -119,7 +119,7 @@ def create_midi_from_results(prediction_output, fp = 'test.mid'):
 		        prev_note = curr_note
 	       
 	    # increase offset to avoid stacking notes. 
-	    dur_to_off = {'half':2.0, 'quarter':1.0, 'eighth':0.5, '16th':0.25}
+	    dur_to_off = {'whole':4.0, 'half':2.0, 'quarter':1.0, 'eighth':0.5, '16th':0.25}
 	   
 	    offset += dur_to_off[dur]
 	    midi_stream = stream.Stream(notes_out)
