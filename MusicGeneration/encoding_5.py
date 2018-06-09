@@ -97,6 +97,10 @@ def create_midi_from_results(prediction_output, fp = 'test.mid'):
 	for pattern in prediction_output:
 	    # pattern is a chord
 	    pattern, dur = pattern.split('_')
+         
+	    if dur == 'complex' or dur == 'zero' or dur == 'breve':
+	        continue
+             
 	    if ('.' in pattern) or pattern.isdigit():
 	        notes_in_chord = pattern.split('.')
 	        notes = []
