@@ -3,16 +3,10 @@ from keras.layers import Dense, Activation, Flatten, Dropout, Input, LSTM, Batch
 from keras.optimizers import Adam, RMSprop
 
 
-def create_model(X, n_a, n_values):
+def initialize_rnn(X, n_a, n_values):
         model = Sequential()
 
-        model.add(Conv1D(128, 3, strides=1, input_shape=(X.shape[1], X.shape[2]), activation = 'relu'))
-
-        #model.add(LSTM(n_a, input_shape=(X.shape[1], X.shape[2]), return_sequences = True))
-        model.add(Dropout(0.1))
-        model.add(LSTM(n_a, return_sequences = True))
-        model.add(Dropout(0.3))
-        model.add(LSTM(n_a, return_sequences = True))
+        model.add(LSTM(n_a, input_shape=(X.shape[1], X.shape[2]), return_sequences = True))
         model.add(Dropout(0.3))
         model.add(Flatten())
         model.add(Dense(n_values))
@@ -20,3 +14,5 @@ def create_model(X, n_a, n_values):
         optimizer = RMSprop(lr = 0.01)
         model.compile(loss = 'categorical_crossentropy', optimizer = 'rmsprop', metrics = ['accuracy'])
         return model
+
+
